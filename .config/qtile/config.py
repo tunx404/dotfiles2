@@ -62,6 +62,29 @@ color_dracula = {
 }
 
 ##################################################
+# Nord Color Palette
+
+color_nord = {
+    'nord0' : '2e3440', # Polar Night
+    'nord1' : '3b4252',          # brighter
+    'nord2' : '434c5e',          # more brighter
+    'nord3' : '4c566a',          # brightest
+    'nord4' : 'd8dee9', # Snow Storm
+    'nord5' : 'e5e9f0',          # brighter
+    'nord6' : 'eceff4',          # brightest
+    'nord7' : '8fbcbb', # Frost
+    'nord8' : '88c0d0',
+    'nord9' : '81a1c1',
+    'nord10': '5e81ac',
+    'nord11': 'bf616a', # Aurora # red
+    'nord12': 'd08770',          # orange
+    'nord13': 'ebcb8b',          # yellow
+    'nord14': 'a3be8c',          # green
+    'nord15': 'b48ead',          # purple
+    'Transparent':  '#00000000',
+}
+
+##################################################
 # Configurations
 
 layout_margin = 2
@@ -69,16 +92,16 @@ layout_margin = 2
 font = 'Ubuntu Condensed Regular'
 
 widget_background_color = None
-# widget_background_color = color_dracula['Transparent']
-# widget_background_color = color_dracula['Background']
-widget_foreground_color = color_dracula['Foreground']
-# widget_foreground_color = color_dracula['Red']
+# widget_background_color = color_nord['Transparent']
+# widget_background_color = color_nord['nord6']
+widget_foreground_color = color_nord['nord0']
+# widget_foreground_color = color_nord['nord11']
 
 bar_size = 24
 # bar_margin = [layout_margin, layout_margin, 0, layout_margin]
 bar_margin = [0, 0, layout_margin, 0]
-# bar_background = color_dracula['Transparent']
-bar_background = color_dracula['Background']
+# bar_background = color_nord['Transparent']
+bar_background = color_nord['nord6']
 bar_opacity = 1
 # bar_opacity = 0.85
 
@@ -476,10 +499,8 @@ for k, group in zip(['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'], groups):
 
 layout_config = {'border_width': 2,
                 'margin': layout_margin,
-                # 'border_focus': color_dracula['Comment'],
-                'border_focus': color_dracula['Foreground'],
-                # 'border_normal': color_dracula['Current Line'],
-                'border_normal': color_dracula['Comment'],
+                'border_focus': color_nord['nord0'],
+                'border_normal': color_nord['nord4'],
 }
 
 layouts = [
@@ -550,17 +571,15 @@ def init_widget_list():
             # font='Inconsolata SemiBold',
             # font=font,
             fontsize=28,
-            # active=color_dracula['Foreground'],
-            # inactive=color_dracula['Current Line'],
-            block_highlight_text_color=color_dracula['Foreground'],
-            # highlight_color=color_dracula['Current Line'],
-            # highlight_color=color_dracula['Comment'],
-            highlight_color=color_dracula['Red'],
+            active=color_nord['nord0'],
+            # inactive=color_nord['nord11'],
+            block_highlight_text_color=color_nord['nord0'],
+            highlight_color=color_nord['nord11'],
             highlight_method='line',
-            this_current_screen_border=color_dracula['Foreground'],
-            this_screen_border=color_dracula['Current Line'],
-            other_current_screen_border=color_dracula['Foreground'],
-            other_screen_border=color_dracula['Current Line'],
+            this_current_screen_border=color_nord['nord0'],
+            this_screen_border=color_nord['nord10'],
+            other_current_screen_border=color_nord['nord0'],
+            other_screen_border=color_nord['nord10'],
             hide_unused=True,
         ),
 
@@ -573,7 +592,7 @@ def init_widget_list():
 
         separator_left(widget_background_color, widget_foreground_color),
         widget.TaskList(
-            border=color_dracula['Foreground'],
+            border=color_nord['nord0'],
             borderwidth=1,
             max_title_width=200,
             icon_size=16,
@@ -696,8 +715,8 @@ def init_widget_list():
     return widget_list
     
 widget_list1 = init_widget_list()
-widget_list2 = init_widget_list()[:-3] + init_widget_list()[-1:]
-widget_list3 = init_widget_list()[:-3] + init_widget_list()[-1:]
+# widget_list2 = init_widget_list()[:-3] + init_widget_list()[-1:]
+# widget_list3 = init_widget_list()[:-3] + init_widget_list()[-1:]
 
 widget_defaults = dict(
     font=font,
@@ -710,8 +729,8 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(top=bar.Bar(widgets=widget_list1, size=bar_size, background=bar_background, margin=bar_margin, opacity=bar_opacity)),
-    Screen(top=bar.Bar(widgets=widget_list2, size=bar_size, background=bar_background, margin=bar_margin, opacity=bar_opacity)),
-    Screen(top=bar.Bar(widgets=widget_list3, size=bar_size, background=bar_background, margin=bar_margin, opacity=bar_opacity)),
+    # Screen(top=bar.Bar(widgets=widget_list2, size=bar_size, background=bar_background, margin=bar_margin, opacity=bar_opacity)),
+    # Screen(top=bar.Bar(widgets=widget_list3, size=bar_size, background=bar_background, margin=bar_margin, opacity=bar_opacity)),
 ]
 
 
