@@ -50,7 +50,7 @@ color_dracula = {
     'Background':   '#282a36',
     'Current Line': '#44475a',
     'Foreground':   '#f8f8f2',
-    'Comment':      '6272a4',
+    'Comment':      '#6272a4',
     'Cyan':         '#8be9fd',
     'Green':        '#50fa7b',
     'Orange':       '#ffb86c',
@@ -87,23 +87,29 @@ color_nord = {
 ##################################################
 # Configurations
 
-layout_margin = 2
+# tunx404_color_background   = color_dracula['Background']
+# tunx404_color_background_2 = color_dracula['Comment']
+# tunx404_color_foreground   = color_dracula['Foreground']
+# tunx404_color_foreground_2 = color_dracula['Current Line']
+# tunx404_color_red          = color_dracula['Red']
 
-font = 'Ubuntu Condensed Regular'
+tunx404_color_background   = color_nord['nord4']
+tunx404_color_background_2 = color_nord['nord5']
+tunx404_color_foreground   = color_nord['nord0']
+tunx404_color_foreground_2 = color_nord['nord3']
+tunx404_color_red          = color_nord['nord11']
 
 widget_background_color = None
-# widget_background_color = color_nord['Transparent']
-# widget_background_color = color_nord['nord6']
-widget_foreground_color = color_nord['nord0']
-# widget_foreground_color = color_nord['nord11']
+widget_foreground_color = tunx404_color_foreground
+
+tunx404_font = 'Ubuntu Condensed Regular'
+
+layout_margin = 2
 
 bar_size = 24
-# bar_margin = [layout_margin, layout_margin, 0, layout_margin]
 bar_margin = [0, 0, layout_margin, 0]
-# bar_background = color_nord['Transparent']
-bar_background = color_nord['nord6']
+bar_background = tunx404_color_background
 bar_opacity = 1
-# bar_opacity = 0.85
 
 # 
 group_names = [
@@ -149,7 +155,6 @@ task_manager = 'ao'
 photo_library = 'darktable'
 # MON
 system_monitor = 'gnome-system-monitor'
-performance_controller = 'cpupower-gui'
 system_monitor_cli = terminal + ' -e htop'
 cpu_freq_monitor = terminal + ' -e watch -n1 "grep \"MHz\" /proc/cpuinfo"'
 sensor_monitor = terminal + ' -e watch i8kctl' # ' -e watch sensors'
@@ -182,7 +187,7 @@ change_wallpaper_dracula_2 = 'nitrogen --head=1 --set-zoom-fill --random --save 
 screenshot_clipboard = ' -o "IMG_%Y%m%d_%H%M%S.png" -e "mv $f ~/SSD1/Miscellaneous"'
 screen_recorder = 'sa.sy.bluerecorder'
 
-change_dual_monitor_state = 'sh /home/tunx404/.scripts/change_dual_monitor_state.sh'
+change_multiple_monitor_setup = 'sh /home/tunx404/.scripts/change_multiple_monitor_setup.sh'
 power_saving = 'sh /home/tunx404/.scripts/power_saving.sh '
 performance_profile = 'cpupower-gui profile '
 
@@ -264,7 +269,6 @@ keys = [
     Key([mod], 'i',  lazy.function(app_to_group(group_names[6], photo_library)),  desc='Photo library'),
     # MON
     Key([mod], 'y',  lazy.function(app_to_group(group_names[7], system_monitor)), desc='System monitor'),
-    Key([mod], 'F9', lazy.function(app_to_group(group_names[7], performance_controller)), desc='Performance controller'),
     # SYS
     Key([mod], 'v',  lazy.function(app_to_group(group_names[8], volume_controller)),
                      lazy.function(app_to_group(group_names[8], bluetooth_manager)), desc='Volume controller & Bluetooth manager'),
@@ -347,35 +351,25 @@ keys = [
     Key([mod, 'control', 'shift'], 's', lazy.function(window_to_prev_group), desc='Move window to the prev group'),
 
     # Screens
-    # Key([mod], 'Right', lazy.to_screen(1), desc='Move focus to the next screen'),
-    # Key([mod], 'Left',  lazy.to_screen(0), desc='Move focus to the prev screen'),
-
-    # Key([mod, 'control'], 'd', lazy.to_screen(1), desc='Move focus to the next screen'),
-    # Key([mod, 'control'], 'a', lazy.to_screen(0), desc='Move focus to the prev screen'),
-    
-    # Key([mod, 'shift'], 'Right', lazy.function(window_to_next_screen),     lazy.to_screen(1), desc='Move window to the next screen'),
-    # Key([mod, 'shift'], 'Left',  lazy.function(window_to_previous_screen), lazy.to_screen(0), desc='Move window to the prev screen'),
-
     Key([mod, 'control', 'shift'], 'd', lazy.function(window_to_next_screen),     lazy.to_screen(1), desc='Move window to the next screen'),
     Key([mod, 'control', 'shift'], 'a', lazy.function(window_to_previous_screen), lazy.to_screen(0), desc='Move window to the prev screen'),
 
-    # Key([mod, 'control'], 'Left',  lazy.spawn('xrandr --output DP-3    --mode 1920x1080 --pos 1920x0 --rotate left'),
-    #                                lazy.spawn('nitrogen --restore'),
-    #                                desc='Rotate monitor 2 left'),
-    # Key([mod, 'control'], 'Right', lazy.spawn('xrandr --output DP-3    --mode 1920x1080 --pos 1920x0 --rotate right'),
-    #                                lazy.spawn('nitrogen --restore'),
-    #                                desc='Rotate monitor 2 right'),
-    # Key([mod, 'control'], 'Up',    lazy.spawn('xrandr --output DP-3    --mode 1920x1080 --pos 1920x0 --rotate normal'),
-    #                                lazy.spawn('nitrogen --restore'),
-    #                                desc='Rotate monitor 2 normal'),
-    # Key([mod, 'control'], 'Down',  lazy.spawn('xrandr --output DP-3    --mode 1920x1080 --pos 1920x0 --rotate inverted'),
-    #                                lazy.spawn('xrandr --output DP-1-3  --mode 1920x1080 --pos 1920x0 --rotate inverted'),
-    #                                lazy.spawn('nitrogen --restore'),
-    #                                desc='Rotate monitor 2 inverted'),
+    Key([mod, 'control'], 'Left',  lazy.spawn('xrandr --output DP-3 --mode 1920x1080 --pos 3840x0 --rotate left'),
+                                   lazy.spawn('nitrogen --restore'),
+                                   desc='Rotate monitor left'),
+    Key([mod, 'control'], 'Right', lazy.spawn('xrandr --output DP-3 --mode 1920x1080 --pos 3840x0 --rotate right'),
+                                   lazy.spawn('nitrogen --restore'),
+                                   desc='Rotate monitor right'),
+    Key([mod, 'control'], 'Up',    lazy.spawn('xrandr --output DP-3 --mode 1920x1080 --pos 3840x0 --rotate normal'),
+                                   lazy.spawn('nitrogen --restore'),
+                                   desc='Rotate monitor normal'),
+    Key([mod, 'control'], 'Down',  lazy.spawn('xrandr --output DP-3 --mode 1920x1080 --pos 3840x0 --rotate inverted'),
+                                   lazy.spawn('nitrogen --restore'),
+                                   desc='Rotate monitor inverted'),
 
     Key([mod, 'control'], 'Return', lazy.spawn('nitrogen --restore'), desc='Reset wallpaper'),
 
-    Key([mod], 'p', lazy.spawn(change_dual_monitor_state), desc='Change dual monitor state'),
+    Key([mod], 'p', lazy.spawn(change_multiple_monitor_setup), desc='Change multiple monitor setup'),
 
     ####################
 
@@ -390,16 +384,6 @@ keys = [
     Key(['control'], 'Print', lazy.spawn('scrot -u' + screenshot_clipboard),    desc='Screenshot (window)'),
     Key(['shift'],   'Print', lazy.spawn('scrot -s -f' + screenshot_clipboard), desc='Screenshot (area)'),
     Key(['control', 'shift'], 'Print', lazy.spawn(screen_recorder), desc='Screen recorder'),
-
-    # Key([],          'F9', lazy.spawn('scrot' + screenshot_clipboard),       desc='Screenshot (all)'),
-    # Key(['control'], 'F9', lazy.spawn('scrot -u' + screenshot_clipboard),    desc='Screenshot (window)'),
-    # Key(['shift'],   'F9', lazy.spawn('scrot -s -f' + screenshot_clipboard), desc='Screenshot (area)'),
-    # Key(['control', 'shift'], 'F9', lazy.spawn(screen_recorder), desc='Screen recorder'),
-
-    # Key([],          'XF86AudioNext', lazy.spawn('scrot' + screenshot_clipboard),       desc='Screenshot (all)'),
-    # Key(['control'], 'XF86AudioNext', lazy.spawn('scrot -u' + screenshot_clipboard),    desc='Screenshot (window)'),
-    # Key(['shift'],   'XF86AudioNext', lazy.spawn('scrot -s -f' + screenshot_clipboard), desc='Screenshot (area)'),
-    # Key(['control', 'shift'], 'XF86AudioNext', lazy.spawn(screen_recorder), desc='Screen recorder'),
 
     Key([mod],          'x', lazy.spawn('scrot' + screenshot_clipboard),       desc='Screenshot (all)'),
     Key([mod, 'control'], 'x', lazy.spawn('scrot -u' + screenshot_clipboard),    desc='Screenshot (window)'),
@@ -418,13 +402,6 @@ keys = [
 
     Key([mod, 'control', 'shift'], 'minus', lazy.spawn(power_saving + 'on'),  desc='Power saving on'),
     Key([mod, 'control', 'shift'], 'equal', lazy.spawn(power_saving + 'off'), desc='Power saving off'),
-
-    Key([mod, 'control', 'shift'], '0', lazy.spawn(performance_profile + '08'), desc='Performance level 0'),
-    Key([mod, 'control', 'shift'], '1', lazy.spawn(performance_profile + '16'), desc='Performance level 1'),
-    Key([mod, 'control', 'shift'], '2', lazy.spawn(performance_profile + '26'), desc='Performance level 2'),
-    Key([mod, 'control', 'shift'], '3', lazy.spawn(performance_profile + '36'), desc='Performance level 3'),
-    Key([mod, 'control', 'shift'], '4', lazy.spawn(performance_profile + '45'), desc='Performance level 4'),
-    Key([mod, 'control', 'shift'], '5', lazy.spawn(performance_profile + '45P'), desc='Performance level 5'),
 
     # Qtile
     # Key([mod, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
@@ -447,7 +424,6 @@ keys = [
 
     Key([], 'XF86Calculator', lazy.spawn(calculator)),
 ]
-
 
 ##################################################
 # Groups
@@ -499,8 +475,8 @@ for k, group in zip(['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'], groups):
 
 layout_config = {'border_width': 2,
                 'margin': layout_margin,
-                'border_focus': color_nord['nord0'],
-                'border_normal': color_nord['nord4'],
+                'border_focus': tunx404_color_foreground,
+                'border_normal': tunx404_color_background_2,
 }
 
 layouts = [
@@ -522,37 +498,24 @@ layouts = [
     # layout.Floating(**layout_config),
 ]
 
-
 ##################################################
 # Screens
 
-# sudo subl /lib/python3.9/site-packages/libqtile/widget/graph.py
-graph_config = dict(
-    border_color=widget_foreground_color,
-    border_width=1,
-    fill_color=widget_foreground_color,
-    graph_color=widget_foreground_color,
-    line_width=1,
-    samples=60,
-)
-
 def init_widget_list():
-    def separator_right(bg_color, fg_color):
+    def separator_right():
         return widget.TextBox(
             text='|',
-            # text='',
-            fontsize=12,
-            # background=bg_color,
-            # foreground=fg_color,
+            # fontsize=12,
+            # background=None,
+            # foreground=tunx404_color_foreground,
         )
 
-    def separator_left(bg_color, fg_color):
+    def separator_left():
         return widget.TextBox(
             text='|',
-            # text='',
-            fontsize=12,
-            # background=bg_color,
-            # foreground=fg_color,
+            # fontsize=12,
+            # background=None,
+            # foreground=tunx404_color_foreground,
         )
 
     widget_list = [
@@ -563,36 +526,31 @@ def init_widget_list():
         ),
         widget.Prompt(
             prompt=prompt,
-            font='Inconsolata for Powerline',
         ),
 
-        separator_left(widget_background_color, widget_foreground_color),
+        separator_left(),
         widget.GroupBox(
-            # font='Inconsolata SemiBold',
-            # font=font,
             fontsize=28,
-            active=color_nord['nord0'],
-            # inactive=color_nord['nord11'],
-            block_highlight_text_color=color_nord['nord0'],
-            highlight_color=color_nord['nord11'],
+            active=tunx404_color_foreground,
+            block_highlight_text_color=tunx404_color_foreground,
+            highlight_color=tunx404_color_red,
             highlight_method='line',
-            this_current_screen_border=color_nord['nord0'],
-            this_screen_border=color_nord['nord10'],
-            other_current_screen_border=color_nord['nord0'],
-            other_screen_border=color_nord['nord10'],
+            this_current_screen_border=tunx404_color_foreground,
+            this_screen_border=tunx404_color_foreground_2,
+            other_current_screen_border=tunx404_color_foreground,
+            other_screen_border=tunx404_color_foreground_2,
             hide_unused=True,
         ),
 
-        separator_left(widget_background_color, widget_foreground_color),
+        separator_left(),
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
             scale=0.7,
         ),
-        # widget.CurrentLayout(),
 
-        separator_left(widget_background_color, widget_foreground_color),
+        separator_left(),
         widget.TaskList(
-            border=color_nord['nord0'],
+            border=tunx404_color_foreground,
             borderwidth=1,
             max_title_width=200,
             icon_size=16,
@@ -601,125 +559,77 @@ def init_widget_list():
 
         ####################
 
-        separator_right(widget_background_color, widget_foreground_color),
+        separator_right(),
         widget.OpenWeather(
-            cityid='5206379',
-            # https://openweathermap.org/city/5206379
+            cityid='5206379', # https://openweathermap.org/city/5206379
             format='{temp}°{units_temperature} {humidity}% {weather_details}',
         ),
 
-        # separator_right(widget_background_color, widget_foreground_color),
-        # widget.CPUGraph(
-        #     **graph_config,
-        #     mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(cpu_freq_monitor)},
-        # ),
-        
-        # separator_right(widget_background_color, widget_foreground_color),
-        # widget.MemoryGraph(
-        #     **graph_config,
-        #     mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(system_monitor_cli)},
-        # ),
-        
-        # separator_right(widget_background_color, widget_foreground_color),
-        # widget.NetGraph(
-        #     **graph_config,
-        #     mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(system_monitor)},
-        #     bandwidth_type='down',
-        # ),
-
-        # separator_right(widget_background_color, widget_foreground_color),
-        # widget.NetGraph(
-        #     **graph_config,
-        #     mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(system_monitor)},
-        #     bandwidth_type='up',
-        # ),
-
-        separator_right(widget_background_color, widget_foreground_color),
+        separator_right(),
         widget.CPU(
             format='{load_percent}%',
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(cpu_freq_monitor)},
         ),
 
-        separator_right(widget_background_color, widget_foreground_color),
+        separator_right(),
         widget.Memory(
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(system_monitor_cli)},
         ),
 
-        separator_right(widget_background_color, widget_foreground_color),
+        separator_right(),
         widget.Net(
             interface='wlan0',
             format='{down} ↓↑ {up}',
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(system_monitor)},
         ),
 
-        separator_right(widget_background_color, widget_foreground_color),
+        separator_right(),
         widget.ThermalSensor(
+            foreground=tunx404_color_foreground,
+            foreground_alert=tunx404_color_red,
             tag_sensor='Package id 0',
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(sensor_monitor)},
         ),
 
-        separator_right(widget_background_color, widget_foreground_color),
+        separator_right(),
         widget.NvidiaSensors(
+            foreground=tunx404_color_foreground,
+            foreground_alert=tunx404_color_red,
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(gpu_monitor)},
         ),
 
-        separator_right(widget_background_color, widget_foreground_color),
+        separator_right(),
         widget.PulseVolume(
             limit_max_volume=True,
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(volume_controller)},
         ),
 
-        separator_right(widget_background_color, widget_foreground_color),
+        separator_right(),
         widget.Battery(
-            format='{char} {percent:2.0%} {watt:.2f} W', # '{char} {percent:2.0%} {hour:d}:{min:02d} {watt:.2f} W'
+            format='{char} {percent:2.0%} {watt:.2f} W',
+            # format='{char} {percent:2.0%} {hour:d}:{min:02d} {watt:.2f} W',
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(battery_monitor)},
             update_interval=10,
         ),
 
-        separator_right(widget_background_color, widget_foreground_color),
+        separator_right(),
         widget.Systray(
             icon_size=16,
         ),
 
-        separator_right(widget_background_color, widget_foreground_color),
+        separator_right(),
         widget.Clock(
             format="%a %d/%m %H:%M:%S",
         ),
-
-        # widget.Backlight(),
-        # widget.LaunchBar(progs=[('thunderbird', 'thunderbird -safe-mode', 'launch thunderbird in safe mode')]),
-        # widget.AGroupBox(),
-        # widget.WindowTabs(),
-        # widget.WidgetBox(widgets=[
-        #         widget.TextBox(text="This widget is in the box"),
-        #         widget.Memory()
-        #     ]
-        # ),
-        # widget.HDDBusyGraph(),
-        # widget.CheckUpdates(
-        #     background=widget_background_color,
-        #     update_interval=600,
-        #     mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syyu')},
-        # ),
-        # widget.CapsNumLockIndicator(
-        #     background=widget_background_color,
-        # ),
-        # widget.Chord(
-        #     chords_colors={
-        #         'launch': ('#ff0000', '#ffffff'),
-        #     },
-        #     name_transform=lambda name: name.upper(),
-        # ),
-        # widget.QuickExit(),
     ]
     return widget_list
     
 widget_list1 = init_widget_list()
-# widget_list2 = init_widget_list()[:-3] + init_widget_list()[-1:]
-# widget_list3 = init_widget_list()[:-3] + init_widget_list()[-1:]
+widget_list2 = init_widget_list()[:-3] + init_widget_list()[-1:]
+widget_list3 = init_widget_list()[:-3] + init_widget_list()[-1:]
 
 widget_defaults = dict(
-    font=font,
+    font=tunx404_font,
     fontsize=12,
     padding=3,
     background=widget_background_color,
@@ -729,10 +639,9 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(top=bar.Bar(widgets=widget_list1, size=bar_size, background=bar_background, margin=bar_margin, opacity=bar_opacity)),
-    # Screen(top=bar.Bar(widgets=widget_list2, size=bar_size, background=bar_background, margin=bar_margin, opacity=bar_opacity)),
-    # Screen(top=bar.Bar(widgets=widget_list3, size=bar_size, background=bar_background, margin=bar_margin, opacity=bar_opacity)),
+    Screen(top=bar.Bar(widgets=widget_list2, size=bar_size, background=bar_background, margin=bar_margin, opacity=bar_opacity)),
+    Screen(top=bar.Bar(widgets=widget_list3, size=bar_size, background=bar_background, margin=bar_margin, opacity=bar_opacity)),
 ]
-
 
 ##################################################
 # Startup commands
@@ -741,7 +650,6 @@ screens = [
 def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.scripts/autostart.sh'])
-
 
 ##################################################
 # Others
