@@ -12,7 +12,7 @@
 /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .config/rofi
 # /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .config/baloofilerc
 
-/usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .config/Caprine/custom.css
+# /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .config/Caprine/custom.css
 /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .config/mimeapps.list
 /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .config/pomotroid/user-preferences.json
 # /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .config/baloofilerc
