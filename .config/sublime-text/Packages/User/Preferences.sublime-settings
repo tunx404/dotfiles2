@@ -1,6 +1,6 @@
 {
 	"font_size": 10,
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"color_scheme": "Nord.sublime-color-scheme",
 	"ignored_packages":
 	[
 		"Vintage",
