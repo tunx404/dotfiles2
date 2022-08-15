@@ -591,12 +591,12 @@ def init_widget_list():
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(sensor_monitor)},
         ),
 
-        separator_right(),
-        widget.NvidiaSensors(
-            foreground=tunx404_color_foreground,
-            foreground_alert=tunx404_color_red,
-            mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(gpu_monitor)},
-        ),
+        # separator_right(),
+        # widget.NvidiaSensors(
+        #     foreground=tunx404_color_foreground,
+        #     foreground_alert=tunx404_color_red,
+        #     mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(gpu_monitor)},
+        # ),
 
         separator_right(),
         widget.PulseVolume(
