@@ -18,7 +18,7 @@
 # /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .config/minidlna/minidlna.conf
 # /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .config/Caprine/custom.css
 
-/usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .ssh/config
+# /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .ssh/config
 
 /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .local/share/nemo-python
 
