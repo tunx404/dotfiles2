@@ -36,7 +36,6 @@ from typing import List
 from libqtile import bar, layout, widget, hook, qtile
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.lazy import lazy
-# from libqtile.utils import guess_terminal
 
 import os
 import re
@@ -44,76 +43,9 @@ import socket
 import subprocess
 
 ##################################################
-# Dracula Color Palette
-
-color_dracula = {
-    'Background':   '#282a36',
-    'Current Line': '#44475a',
-    'Foreground':   '#f8f8f2',
-    'Comment':      '#6272a4',
-    'Cyan':         '#8be9fd',
-    'Green':        '#50fa7b',
-    'Orange':       '#ffb86c',
-    'Pink':         '#ff79c6',
-    'Purple':       '#bd93f9',
-    'Red':          '#ff5555',
-    'Yellow':       '#f1fa8c',
-    'Transparent':  '#00000000',
-}
-
-##################################################
-# Nord Color Palette
-
-color_nord = {
-    'nord0' : '#2e3440', # Polar Night
-    'nord1' : '#3b4252',          # brighter
-    'nord2' : '#434c5e',          # more brighter
-    'nord3' : '#4c566a',          # brightest
-    'nord4' : '#d8dee9', # Snow Storm
-    'nord5' : '#e5e9f0',          # brighter
-    'nord6' : '#eceff4',          # brightest
-    'nord7' : '#8fbcbb', # Frost
-    'nord8' : '#88c0d0',
-    'nord9' : '#81a1c1',
-    'nord10': '#5e81ac',
-    'nord11': '#bf616a', # Aurora # red
-    'nord12': '#d08770',          # orange
-    'nord13': '#ebcb8b',          # yellow
-    'nord14': '#a3be8c',          # green
-    'nord15': '#b48ead',          # purple
-    'Transparent':  '#00000000',
-}
-
-##################################################
 # Configurations
 
-# tunx404_color_background   = color_dracula['Background']
-# tunx404_color_background_2 = color_dracula['Current Line']
-# tunx404_color_foreground   = color_dracula['Foreground']
-# tunx404_color_foreground_2 = color_dracula['Comment']
-
-# tunx404_color_red          = color_dracula['Red']
-# tunx404_color_orange       = color_dracula['Orange']
-# tunx404_color_yellow       = color_dracula['Yellow']
-# tunx404_color_green        = color_dracula['Green']
-# tunx404_color_blue         = color_dracula['Comment']
-# tunx404_color_purple       = color_dracula['Purple']
-
-# tunx404_color_transparent  = color_dracula['Transparent']
-
-tunx404_color_background   = color_nord['nord4']
-tunx404_color_background_2 = color_nord['nord6']
-tunx404_color_foreground   = color_nord['nord0']
-tunx404_color_foreground_2 = color_nord['nord3']
-
-tunx404_color_red          = color_nord['nord11']
-tunx404_color_orange       = color_nord['nord12']
-tunx404_color_yellow       = color_nord['nord13']
-tunx404_color_green        = color_nord['nord14']
-tunx404_color_blue         = color_nord['nord7']
-tunx404_color_purple       = color_nord['nord15']
-
-tunx404_color_transparent  = color_dracula['Transparent']
+from colors import *
 
 tunx404_font = 'Ubuntu Condensed Regular'
 
@@ -220,8 +152,8 @@ change_wallpaper_dracula_1 = 'nitrogen --head=0 --set-zoom-fill --random --save 
 change_wallpaper_dracula_2 = 'nitrogen --head=1 --set-zoom-fill --random --save /home/tunx404/.wallpapers/Wide/Dracula'
 change_wallpaper_dracula_3 = 'nitrogen --head=2 --set-zoom-fill --random --save /home/tunx404/.wallpapers/Wide/Dracula'
 
-# screenshot_clipboard = ' -o "%Y-%m-%d_%H-%M-%S.png" -e "xclip -selection clip -t image/png -i $f; mv $f ~/SSD1/Miscellaneous"'
-screenshot_clipboard = ' -o "IMG_%Y%m%d_%H%M%S.png" -e "mv $f ~/SSD1/Miscellaneous"'
+# screenshot_clipboard = ' -o "%Y-%m-%d_%H-%M-%S.png" -e "xclip -selection clip -t image/png -i $f; mv $f ~/Miscellaneous"'
+screenshot_clipboard = ' -o "IMG_%Y%m%d_%H%M%S.png" -e "mv $f ~/Miscellaneous"'
 screen_recorder = 'sa.sy.bluerecorder'
 
 change_multiple_monitor_setup = 'sh /home/tunx404/.scripts/change_multiple_monitor_setup.sh'
@@ -294,7 +226,7 @@ keys = [
     Key([mod], 'h', lazy.function(app_to_group(group_names[0], video_encoder)), desc='Video encoder'),
     Key([mod], 'b', lazy.function(app_to_group(group_names[0], file_backup)), desc='File backup'),
     # WEB
-    Key([mod], 'c', lazy.function(app_to_group(group_names[1], browser)),      desc='Browser'),
+    Key([mod], 'c', lazy.function(app_to_group(group_names[1], browser)), desc='Browser'),
     Key([mod], 'k', lazy.function(app_to_group(group_names[1], password_manager)), desc='Password manager'),
     Key([mod], 'u', lazy.function(app_to_group(group_names[1], music_playlist)), desc='Music playlist'),
     Key([mod], 'y', lazy.function(app_to_group(group_names[1], study_playlist)), desc='Study with me playlist'),

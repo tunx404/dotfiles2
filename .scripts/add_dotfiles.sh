@@ -26,6 +26,7 @@
 
 /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .Xresources
 /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .bashrc
+/usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .bash_aliases
 /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .gitconfig
 /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .gitignore
 /usr/bin/git --git-dir=$HOME/.dotfiles2/ --work-tree=$HOME add .xprofile
