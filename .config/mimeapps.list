@@ -170,6 +170,7 @@ application/x-java=sublime_text.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-B5SWL1.desktop
 application/x-x509-ca-cert=sublime_text.desktop
 application/x-trash=sublime_text.desktop
+x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_home_tunx404_st_stm32cubeide_1.10.1_.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=userapp-Thunderbird-QW16B1.desktop;

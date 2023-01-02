@@ -117,11 +117,11 @@ writer = '/usr/bin/wps'
 presentation = '/usr/bin/wpp'
 # CLI
 # OFF
-task_manager = 'ao'
+task_manager = '/opt/kuro/Kuro.AppImage'
 # MM_
 photo_library = 'darktable'
 # MON
-system_monitor = terminal + ' -e gtop' # 'gnome-system-monitor'
+system_monitor = 'gnome-system-monitor' # terminal + ' -e gtop'
 system_monitor_cli = terminal + ' -e htop'
 cpu_freq_monitor = terminal + ' -e watch -n1 "grep \"MHz\" /proc/cpuinfo"'
 sensor_monitor = terminal + ' -e watch i8kctl' # ' -e watch sensors'
@@ -135,6 +135,7 @@ virtual_machines = 'virtualbox' # 'vmware'
 # OTHERS
 calculator = 'qalculate-gtk'
 cli_fun = terminal + ' -e asciiquarium'
+key_bindings = 'eog /home/tunx404/Cloud/Google\\ Drive\\ 1/Miscellaneous/Qtile/mod4.png'
 
 ####################
 
@@ -257,8 +258,9 @@ keys = [
                     lazy.function(app_to_group(group_names[8], bluetooth_manager)), desc='Volume controller & Bluetooth manager'),
     # VM_
     Key([mod], 'j', lazy.function(app_to_group(group_names[9], virtual_machines)), desc='Virtual machines'),
-
-
+    
+    # OTHERS
+    Key([mod], 'F1', lazy.spawn(key_bindings), desc='Key bindings'),
     Key([mod, 'shift', 'control'], 'z',
         # DIR
         lazy.spawn(file_manager),
@@ -421,10 +423,10 @@ num_groups = 10
 group_matches = [
     [Match(wm_class=['Nemo', 'Insync', 'krename', "FreeFileSync"])],
     [Match(wm_class=['Google-chrome', 'Opera', 'KeePassXC', 'qBittorrent', 'Caprine', 'whatsapp-nativefier-d40211', 'Cisco AnyConnect Secure Mobility Client', 'Thunderbird'])],
-    [Match(wm_class=['Subl', 'jetbrains-studio', 'code-oss', 'zoom', 'sun-awt-X11-XFramePeer'])],
-    [Match(wm_class=['qpdfview', 'pdf', 'pomotroid'])],
+    [Match(wm_class=['Subl', 'jetbrains-studio', 'code-oss', 'sun-awt-X11-XFramePeer'])],
+    [Match(wm_class=['qpdfview', 'pdf', 'pomotroid', 'zoom'])],
     [Match(wm_class=[])],
-    [Match(wm_class=['et', 'wps', 'wpp', 'Lifeograph', 'Ao'])],
+    [Match(wm_class=['et', 'wps', 'wpp', 'Lifeograph', 'kuro'])],
     [Match(wm_class=['Darktable', 'Gimp-2.10', 'Spotify', 'Steam', 'resolve', 'csgo_linux64', 'hl2_linux'])],
     [Match(wm_class=['Gnome-system-monitor', 'Cpupower-gui', 'Gnome-power-statistics'])],
     [Match(wm_class=['Blueman-manager', 'Pavucontrol', 'Pamac-manager'])],
@@ -450,8 +452,8 @@ dgroups_app_rules = [
     Rule(Match(wm_class=['et', 'wps', 'wpp']), float=False, intrusive=True),
     ]
 
-# for k, group in zip(['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'], groups):
-for k, group in zip(['1', '2', '3', '4', '5', '6', '7', '8', '9', 'grave'], groups):
+for k, group in zip(['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'], groups):
+# for k, group in zip(['1', '2', '3', '4', '5', '6', '7', '8', '9', 'grave'], groups):
     keys.extend([
         Key([mod], k, lazy.group[group.name].toscreen(), desc='Switch to group {}'.format(group_translated_names[group.name])),
         # Key([mod, 'shift'], k, lazy.window.togroup(group.name, switch_group=True), desc='Switch to & move focused window to group {}'.format(group_translated_names[group.name]))
@@ -464,7 +466,7 @@ for k, group in zip(['1', '2', '3', '4', '5', '6', '7', '8', '9', 'grave'], grou
 layout_config = {
     'border_width': 2,
     'margin': layout_margin,
-    'border_focus': tunx404_color_foreground,
+    'border_focus': tunx404_color_red,
     'border_normal': tunx404_color_background_2,
 }
 
