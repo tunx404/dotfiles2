@@ -564,7 +564,7 @@ def init_widget_list():
         separator(direction='right', color=2),
         widget.TextBox(text='', fontsize=20, background=tunx404_color_background_2),
         widget.OpenWeather(
-            cityid='5206379', # https://openweathermap.org/city/5206379
+            cityid='1581130', # https://openweathermap.org/city/1581130
             format='{temp}°{units_temperature} {humidity}% {weather_details}',
             background=tunx404_color_background_2
         ),
